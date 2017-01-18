@@ -304,7 +304,7 @@ class i18n {
             if (is_array($value)) {
                 $code .= $this->compile($value, $prefix . $key . $this->sectionSeperator);
             } else {
-                $code .= 'const ' . $prefix . $key . ' = \'' . str_replace('\'', '\\\'', $value) . "';\n";
+                $code .= 'const ' . $prefix . $key . ' = "' . str_replace('"', '\"', $value) . "\";\n";
             }
         }
         return $code;
