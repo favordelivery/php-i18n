@@ -114,7 +114,7 @@ class i18n {
         }
     }
 
-    public function init() {
+    public function init(bool $require = true) {
         if ($this->isInitialized()) {
             throw new \BadMethodCallException('This object from class ' . __CLASS__ . ' is already initialized. It is not possible to init one object twice!');
         }
@@ -133,7 +133,7 @@ class i18n {
             $config = [];
             foreach ($reversed as $langCode) {
                 $new_config = self::parseLangFile(self::getLangFilePath($langCode, $this->filePath));
-                $config = array_merge($config, $new_config);
+                $config = array_replace_recursive($config, $new_config);
             }
 
             $compiled = "<?php class " . $this->prefix . " {\n";
@@ -148,8 +148,8 @@ class i18n {
             chmod($this->cacheFilePath, 0777);
 
         }
-
-        require_once $this->cacheFilePath;
+        if ($require)
+            require_once $this->cacheFilePath;
     }
     
     private static function parseLangFile($langFilePath)
