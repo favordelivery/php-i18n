@@ -10,7 +10,7 @@ class I18nTestCase extends TestCase
         $i18n = new I18n();
         $i18n->setCachePath(__DIR__);
         $i18n->setFilePath(__DIR__ . '/lang_{LANGUAGE}.yml');
-        $i18n->setFallbackLang('en');
+        $i18n->setFallbackLang('es');
         $i18n->setForcedLang('en');
         $i18n->setPrefix("LangEn");
         $i18n->init(true);
@@ -19,7 +19,7 @@ class I18nTestCase extends TestCase
         $this->assertEquals('This text should be merged to Spanish when english is a fallback', LangEn::category_missing);
         $this->assertEquals("this is a very deeply nested key", LangEn::deep_ly_nested_key);
         $this->assertEquals("this key is missing from es and should fallback", LangEn::deep_ly_nested_missing);
-
+        $this->assertEquals("Not in English", LangEn::not_in_english);
     }
 
     public function testI18nFallsBackToFallbackLang() {

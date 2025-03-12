@@ -7,3 +7,7 @@ deep:
   ly:
     nested:
       key: "this is a very, very deeply nested key"
+
+not:
+  in:
+    english: "Not in English"
