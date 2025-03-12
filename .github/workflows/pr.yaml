@@ -3,7 +3,7 @@ name: i18n Pull Request
 concurrency: ci-${{ github.ref }}
 
 env:
-  PROJECT_NAME: i18n
+  PROJECT_NAME: php-i18n
 
 on:
   pull_request:
