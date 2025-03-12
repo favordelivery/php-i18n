@@ -1,0 +1,23 @@
+# Install composer packages
+FROM composer as dependencies
+ARG COMPOSER_AUTH
+ENV COMPOSER_AUTH "${COMPOSER_AUTH}"
+COPY ./composer.json ./composer.lock /app/
+RUN apk --no-cache add git
+RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs --no-interaction --no-scripts -d /app
+RUN composer install --optimize-autoloader --ignore-platform-reqs --no-interaction --no-scripts -d /app
+
+FROM 683310202952.dkr.ecr.us-east-1.amazonaws.com/base/php:8.2-fpm-k8s-dev
+
+COPY --from=dependencies /app/vendor /var/app/vendor
+COPY src/ /var/app/src/
+
+ENV FVR_ENTRYPOINT_VERBOSE 1
+
+# DEV ONLY: copy in tests on build
+COPY tests/ /var/app/tests/
+
+# Copy in phpunit script
+COPY unit_tests/bin/php-unit.sh /var/app/php-unit.sh
+
+RUN ["chmod", "+x", "/var/app/php-unit.sh"]

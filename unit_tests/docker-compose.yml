@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  tests:
+    build:
+      context: ../.
+      dockerfile: unit_tests/docker/Dockerfile.phpunit
+      args:
+        COMPOSER_AUTH: "${COMPOSER_AUTH}"
+    ports:
+      - "38008:80"
+    command: sh -c 'sleep 1; /var/app/php-unit.sh;'
+    volumes:
+      - ../tests:/var/app/tests
