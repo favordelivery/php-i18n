@@ -1,0 +1,9 @@
+greeting: 'Hola World!'
+
+category:
+  somethingother: 'Something other...'
+
+deep:
+  ly:
+    nested:
+      key: "this is a very, very deeply nested key"

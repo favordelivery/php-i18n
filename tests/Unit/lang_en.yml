@@ -1,0 +1,11 @@
+greeting: 'Hello World!'
+
+category:
+  somethingother: 'Something other...'
+  missing: 'This text should be merged to Spanish when english is a fallback'
+
+deep:
+  ly:
+    nested:
+      key: "this is a very deeply nested key"
+      missing: "this key is missing from es and should fallback"

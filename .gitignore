@@ -1,3 +1,6 @@
 langcache/*
 !langcache/README.md
 .idea
+vendor
+tests/Unit/*.cache.php
+tests/*.cache
